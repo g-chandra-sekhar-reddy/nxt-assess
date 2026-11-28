@@ -1,1 +1,114 @@
-/*  Write CSS here */
+.home-page-container {
+  min-height: calc(100vh - 70px);
+  background-color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 24px;
+}
+
+.home-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  gap: 40px;
+}
+
+.instructions-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  padding: 40px;
+  flex: 1;
+  max-width: 580px;
+}
+
+.instructions-heading {
+  font-family: inherit;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.instructions-list {
+  padding-left: 20px;
+  margin-bottom: 32px;
+}
+
+.instruction-item {
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #334155;
+  margin-bottom: 12px;
+}
+
+.instruction-label {
+  font-weight: 600;
+  color: #334155;
+}
+
+.instruction-value {
+  font-weight: 400;
+  color: #475569;
+}
+
+.start-assessment-button {
+  background-color: #1e3a8a;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.start-assessment-button:hover {
+  background-color: #172554;
+}
+
+.home-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 560px;
+}
+
+.home-assessment-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 992px) {
+  .home-content {
+    flex-direction: column-reverse;
+    gap: 32px;
+  }
+
+  .instructions-card {
+    max-width: 100%;
+    padding: 28px 20px;
+  }
+
+  .home-image-container {
+    max-width: 360px;
+  }
+
+  .instructions-heading {
+    font-size: 20px;
+  }
+
+  .instruction-item {
+    font-size: 14px;
+  }
+}

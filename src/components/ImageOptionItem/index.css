@@ -1,0 +1,34 @@
+.image-option-list-item {
+  list-style-type: none;
+  width: 100%;
+}
+
+.image-option-button {
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.image-option-button:hover {
+  background-color: #f1f5f9;
+}
+
+.image-option-button.selected {
+  border-color: #263868;
+  background-color: #f0f7ff;
+}
+
+.option-image {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  border-radius: 6px;
+  object-fit: contain;
+}

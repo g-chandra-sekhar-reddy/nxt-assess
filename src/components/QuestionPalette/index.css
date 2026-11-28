@@ -1,0 +1,33 @@
+.question-palette-container {
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.palette-heading {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16px;
+}
+
+.palette-numbers-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .palette-numbers-list {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .palette-numbers-list {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

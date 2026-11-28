@@ -1,0 +1,32 @@
+.button-option-list-item {
+  list-style-type: none;
+  width: 100%;
+}
+
+.button-option-item {
+  width: 100%;
+  min-height: 54px;
+  background-color: #ebf4ff;
+  color: #1e293b;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.button-option-item:hover {
+  background-color: #dbeafe;
+}
+
+.button-option-item.selected {
+  background-color: #556987;
+  color: #ffffff;
+  border-color: #556987;
+}

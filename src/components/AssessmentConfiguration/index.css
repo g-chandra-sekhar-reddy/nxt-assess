@@ -1,0 +1,107 @@
+.assessment-configuration-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.config-body {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.status-counters-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.status-counter-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-counter-item p {
+  margin: 0;
+}
+
+.status-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.status-circle.answered {
+  background-color: #7c3aed;
+  color: #ffffff;
+}
+
+.status-circle.unanswered {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+}
+
+.status-label {
+  font-family: inherit;
+  font-size: 13px;
+  color: #334155;
+  font-weight: 500;
+  max-width: 80px;
+  line-height: 1.3;
+}
+
+.config-divider {
+  border: none;
+  border-top: 1px solid #f1f5f9;
+  width: 100%;
+  margin: 12px 0 20px 0;
+}
+
+.submit-test-container {
+  margin-top: auto;
+  width: 100%;
+}
+
+.submit-assessment-btn {
+  width: 100%;
+  height: 44px;
+  background-color: #ffffff;
+  color: #1e3a8a;
+  border: 1.5px solid #1e3a8a;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.submit-assessment-btn:hover {
+  background-color: #1e3a8a;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 992px) {
+  .assessment-configuration-card {
+    max-width: 100%;
+  }
+
+  .status-counters-container {
+    justify-content: flex-start;
+    gap: 32px;
+  }
+}
