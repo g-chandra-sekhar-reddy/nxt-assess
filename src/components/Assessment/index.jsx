@@ -15,8 +15,6 @@ const apiStatusConstants = {
   success: 'SUCCESS',
   failure: 'FAILURE',
 }
-// 
-// ghp_OMGwdIdiH0hyRsm2jhm1yG91rHBTiD10eJzK
 const TOTAL_TIME_IN_SECONDS = 600 // 10 minutes
 
 const Assessment = ({history, onLogout}) => {
@@ -97,9 +95,20 @@ const Assessment = ({history, onLogout}) => {
     }, 1000)
   }, [submitAssessment])
 
+  const stopTimer = useCallback(() => {
+    if (timerIdRef.current) {
+      clearInterval(timerIdRef.current)
+      timerIdRef.current = null
+    }
+  }, [])
+
   const getQuestions = useCallback(async () => {
     setApiStatus(apiStatusConstants.inProgress)
-    const timerStartedAt = Date.now()
+    setTimeRemaining(TOTAL_TIME_IN_SECONDS)
+    timeRemainingRef.current = TOTAL_TIME_IN_SECONDS
+    isSubmittedRef.current = false
+    stopTimer()
+
     const jwtToken = Cookies.get('jwt_token')
     const apiUrl = 'https://apis.ccbp.in/assess/questions'
     const options = {
@@ -117,33 +126,25 @@ const Assessment = ({history, onLogout}) => {
         setTotalQuestions(data.total)
         setCurrentQuestionIndex(0)
         setUserAnswers({})
-        const elapsedSeconds = Math.floor((Date.now() - timerStartedAt) / 1000)
-        const initialTimeRemaining = Math.max(
-          TOTAL_TIME_IN_SECONDS - elapsedSeconds,
-          0,
-        )
-        setTimeRemaining(initialTimeRemaining)
-        timeRemainingRef.current = initialTimeRemaining
-        isSubmittedRef.current = false
+        setTimeRemaining(TOTAL_TIME_IN_SECONDS)
+        timeRemainingRef.current = TOTAL_TIME_IN_SECONDS
         setApiStatus(apiStatusConstants.success)
         startTimer()
       } else {
+        stopTimer()
         setApiStatus(apiStatusConstants.failure)
       }
     } catch {
+      stopTimer()
       setApiStatus(apiStatusConstants.failure)
     }
-  }, [startTimer])
+  }, [startTimer, stopTimer])
 
   useEffect(() => {
     getQuestions()
 
-    return () => {
-      if (timerIdRef.current) {
-        clearInterval(timerIdRef.current)
-      }
-    }
-  }, [getQuestions])
+    return stopTimer
+  }, [getQuestions, stopTimer])
 
   // Automatically select the first option for SINGLE_SELECT questions if not already answered
   useEffect(() => {

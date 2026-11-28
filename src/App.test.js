@@ -183,10 +183,14 @@ describe('Assessment route', () => {
 
   it('decrements one second for each timer callback', async () => {
     let timerCallback
-    vi.spyOn(globalThis, 'setInterval').mockImplementation(callback => {
-      timerCallback = callback
-      return 1
-    })
+    vi.spyOn(globalThis, 'setInterval').mockImplementation(
+      (callback, delay) => {
+        if (delay === 1000) {
+          timerCallback = callback
+        }
+        return 1
+      },
+    )
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(successfulResponse()))
 
     renderAssessment()
@@ -198,8 +202,8 @@ describe('Assessment route', () => {
     expect(screen.getByText('00:09:59')).toBeInTheDocument()
   })
 
-  it('does not lose elapsed time while the questions request is pending', async () => {
-    vi.useFakeTimers({toFake: ['setInterval', 'clearInterval', 'Date']})
+  it('starts the countdown after the questions request succeeds', async () => {
+    vi.useFakeTimers({toFake: ['setInterval', 'clearInterval']})
     let resolveFetch
     vi.stubGlobal(
       'fetch',
@@ -212,9 +216,6 @@ describe('Assessment route', () => {
     )
     renderAssessment()
 
-    act(() => {
-      vi.advanceTimersByTime(1000)
-    })
     await act(async () => {
       resolveFetch(successfulResponse())
     })
@@ -222,6 +223,10 @@ describe('Assessment route', () => {
     expect(
       await screen.findByText('React JS is developed by?'),
     ).toBeInTheDocument()
+    expect(screen.getByText('00:10:00')).toBeInTheDocument()
+    act(() => {
+      vi.advanceTimersByTime(1000)
+    })
     expect(screen.getByText('00:09:59')).toBeInTheDocument()
   })
 
